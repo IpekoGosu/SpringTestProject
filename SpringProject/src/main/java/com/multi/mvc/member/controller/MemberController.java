@@ -49,6 +49,11 @@ public class MemberController {
 		}
 	}
 	
+	@GetMapping("/login")
+	public String loginpage(Model model) {
+		return "member/sign-in";
+	}
+	
 	@RequestMapping("/logout")
 	public String logout(SessionStatus status) { // status: 세션의 상태를 확인하는 인자
 		log.debug("status : " + status.isComplete()); // isComplete : 세션이 완료 되었는지
@@ -61,7 +66,7 @@ public class MemberController {
 	@GetMapping("/member/enroll")
 	public String enrollPage() { // xxxPage = 단순 html/jsp view로 연결하는 핸들러 메소드 패턴
 		log.debug("회원 가입 페이지 요청");
-		return "member/memberEnroll";
+		return "member/sign-up";
 	}
 	
 	@PostMapping("/member/enroll")

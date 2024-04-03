@@ -15,10 +15,6 @@ public class Member {
 	private String password;
 	private String role;
 	private String name;
-	private String phone;
-	private String email;
-	private String address;
-	private String hobby;
 	private String status;
 	private Date   enrollDate;
 	private Date   modifyDate;
