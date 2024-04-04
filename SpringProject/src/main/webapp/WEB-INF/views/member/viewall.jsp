@@ -127,7 +127,6 @@
     		.fail((jqXHR)=>{
     			console.log(jqXHR);
     		})
-    		
     	}
     
     
