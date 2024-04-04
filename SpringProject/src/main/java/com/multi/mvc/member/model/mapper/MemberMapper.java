@@ -25,4 +25,8 @@ public interface MemberMapper {
 	 */
 	int updatePwd(Map<String, String> map);
 	int deleteMember(int mno);
+	
+	int snameMemberCount(String inputval);
+	List<Member> snameMember(String inputval);
+	
 }

@@ -54,6 +54,18 @@
 	 		SET STATUS = 'N'
 	 	WHERE mNO = #{mno}
 	 </update>
+	 
+	 
+	 <select id="snameMemberCount" parameterType="String" resultType="int">
+	 	SELECT COUNT(*) FROM MEMBER
+	 	WHERE NAME LIKE CONCAT ('%', #{inputval}, '%')
+	 </select>
+	 
+	 <select id="snameMember" parameterType="String" resultMap="memberResultMap">
+	 	SELECT * FROM MEMBER
+	 	WHERE NAME LIKE CONCAT ('%', #{inputval}, '%')
+	 </select>
+	 
 	
 </mapper>
 

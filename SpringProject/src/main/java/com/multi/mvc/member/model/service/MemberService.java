@@ -102,6 +102,16 @@ public class MemberService {
 		return mapper.deleteMember(mno);
 	}
 	
+	public int snameCount(String inputval) {
+		return mapper.snameMemberCount(inputval);
+	}
+	
+	public List<Member> snameList(String inputval) {
+		return mapper.snameMember(inputval);
+	}
+	
+	
+	
 }
 
 

@@ -7,6 +7,8 @@
 <html lang="zxx">
 
 <head>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- Primary Meta Tags -->
 <title>Spaces - Blog post</title>
@@ -59,27 +61,77 @@
 
 </head>
 
-<body>
-    <header class="header-global">
-    <nav id="navbar-main" class="navbar navbar-main navbar-theme-primary navbar-expand-lg headroom py-lg-3 px-lg-6 navbar-dark navbar-theme-primary">
-        <div class="container">
-            <a class="navbar-brand @@logo_classes" href="${path}/resources/index.html">
-                <img class="navbar-brand-dark common" src="${path}/resources/assets/img/brand/light.svg" height="35" alt="Logo light">
-                <img class="navbar-brand-light common" src="${path}/resources/assets/img/brand/dark.svg" height="35" alt="Logo dark">
-            </a>
-            <div class="d-none d-lg-block @@cta_button_classes">
-                <a href="https://themesberg.com/docs/spaces/components/buttons/" target="_blank" class="btn btn-md btn-outline-white animate-up-2 mr-3"><i class="fas fa-book mr-1"></i> <span class="d-xl-none">Docs</span> <span class="d-none d-xl-inline">Components</span></a>
-                <a href="https://themes.getbootstrap.com/product/spaces/" target="_blank" class="btn btn-md btn-secondary animate-up-2"><i class="fas fa-shopping-bag mr-2"></i> Buy now</a>
+<body class="bg-soft">
+<jsp:include page="/WEB-INF/views/common/header.jsp">
+	<jsp:param value="회원목록" name="title"/>
+</jsp:include>
+
+    <main>
+        <!-- Hero -->
+        <section class="section-header">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 text-center">
+                        <h1 class="display-2 mb-3">회원 목록</h1>
+                        <div class="row">
+                        	<div class="col">
+		                        <p>id로 검색하기</p>
+		                        <div class="form-group">
+								    <div class="input-group mb-4">
+								        <input id="idinput" class="form-control" placeholder="ID" type="text">
+								        <div class="input-group-append">
+								            <span class="input-group-text"><i class="fas fa-search"></i></span>
+								        </div>
+								    </div>
+								</div>
+                        	</div>
+                        	<div class="col">
+		                        <p>이름으로 검색하기</p>
+		                        <div class="form-group">
+								    <div class="input-group mb-4">
+								        <input id="nameinput" class="form-control" placeholder="search for name" type="text">
+								        <div class="input-group-append">
+								            <span class="input-group-text" onclick="searchname()"><i class="fas fa-search"></i></span>
+								        </div>
+								    </div>
+								</div>
+                        	</div>
+                        </div>
+                        
+                        <div id="tablearea">
+                        
+                        </div>
+                        
+                        
+                    </div>
+                </div>
             </div>
-            <div class="d-flex d-lg-none align-items-center">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global"
-                    aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation"><span
-                        class="navbar-toggler-icon"></span></button>
-            </div>
-        </div>
-    </nav>
-</header>
+        </section>
+    </main>
+    <script type="text/javascript">
+    	function searchname(){
+    		let inputval = $('#nameinput').val();
+    		
+    		$.ajax({
+    			type: 'post',
+    			url: '${path}/member/searchname',
+    			data:{
+    				name : inputval
+    			},
+    			dataType: "text"
+    		})
+    		.done((result)=>{
+    			console.log(result);
+    			$('#tablearea').replaceWith(result);
+    		})
+    		.fail((jqXHR)=>{
+    			console.log(jqXHR);
+    		})
+    		
+    	}
     
+    
+    </script>
 
     <!-- Core -->
 <script src="${path}/resources/vendor/jquery/dist/jquery.min.js"></script>
@@ -125,23 +177,6 @@
 
 <!-- Spaces custom Javascript -->
 <script src="${path}/resources/assets/js/spaces.js"></script>
-    <script>
-        // here you should load content from an Ajax request and when it
-        // loads you can disable the button from loading
-        $('#loadOnClick').click(function() {
-            $button = $(this);
-            $loadContent = $('#extraContent');
-            $allLoaded = $('#allLoadedText');
-            $button.addClass('btn-loading');
-            $button.attr('disabled', true);
-
-            setTimeout(function() {
-                $loadContent.show();
-                $button.hide();
-                $allLoaded.show();
-            }, 1500);
-        });
-    </script>
 </body>
 
 </html>

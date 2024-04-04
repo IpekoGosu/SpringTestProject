@@ -1,6 +1,7 @@
 package com.multi.mvc.member.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,12 +104,31 @@ public class MemberController {
 		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 	}
 	
+	// 회원 이름검색 ajax
+	@PostMapping("/member/searchname")
+	public String sname(Model model, String name){
+		List<Member> list = service.snameList(name);
+		int count = service.snameCount(name);
+		
+		model.addAttribute("count", count);
+		model.addAttribute("list", list);
+		
+		return "member/namelist";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// 회원정보 보기 + update
 	@GetMapping("/member/view")
 	public String memberViewPage() {
 		log.debug("회원정보 보기 페이지 요청");
-		return "member/memberView";
+		return "member/viewall";
 	}
 	
 	// http://localhost/mvc/member/update
