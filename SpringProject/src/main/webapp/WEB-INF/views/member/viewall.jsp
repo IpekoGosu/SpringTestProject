@@ -80,7 +80,7 @@
 								    <div class="input-group mb-4">
 								        <input id="idinput" class="form-control" placeholder="ID" type="text">
 								        <div class="input-group-append">
-								            <span class="input-group-text"><i class="fas fa-search"></i></span>
+								            <span class="input-group-text" onclick="searchid()"><i class="fas fa-search"></i></span>
 								        </div>
 								    </div>
 								</div>
@@ -126,6 +126,25 @@
     		})
     		.fail((jqXHR)=>{
     			console.log(jqXHR);
+    		})
+    	}
+    	function searchid(){
+    		let inputval = $('#idinput').val();
+    		
+    		$.ajax({
+    			type: 'post',
+    			url: '${path}/member/searchid',
+    			data:{
+    				id : inputval
+    			},
+    			dataType: "text",
+    			success: (result) => {
+    				console.log(result);
+        			$('#tablearea').replaceWith(result);
+    			},
+    			error: (e) =>{
+    				console.log(e);
+    			}
     		})
     	}
     

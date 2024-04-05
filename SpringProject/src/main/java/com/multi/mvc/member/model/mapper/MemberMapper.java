@@ -28,5 +28,7 @@ public interface MemberMapper {
 	
 	int snameMemberCount(String inputval);
 	List<Member> snameMember(String inputval);
+	List<Member> sidMember(String inputval);
+	int sidMemberCount(String inputval);
 	
 }

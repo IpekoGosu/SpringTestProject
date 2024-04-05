@@ -60,10 +60,17 @@
 	 	SELECT COUNT(*) FROM MEMBER
 	 	WHERE NAME LIKE CONCAT ('%', #{inputval}, '%')
 	 </select>
-	 
 	 <select id="snameMember" parameterType="String" resultMap="memberResultMap">
 	 	SELECT * FROM MEMBER
 	 	WHERE NAME LIKE CONCAT ('%', #{inputval}, '%')
+	 </select>
+	 <select id="sidMember" parameterType="String" resultMap="memberResultMap">
+	 	SELECT * FROM MEMBER
+	 	WHERE ID LIKE CONCAT ('%', #{inputval}, '%')
+	 </select>
+	 <select id="sidMemberCount" parameterType="String" resultType="int">
+	 	SELECT COUNT(*) FROM MEMBER
+	 	WHERE ID LIKE CONCAT ('%', #{inputval}, '%')
 	 </select>
 	 
 	

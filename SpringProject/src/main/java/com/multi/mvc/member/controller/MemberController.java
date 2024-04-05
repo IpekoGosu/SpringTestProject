@@ -115,6 +115,17 @@ public class MemberController {
 		
 		return "member/namelist";
 	}
+	// 회원 id검색 ajax
+	@PostMapping("/member/searchid")
+	public String sid(Model model, String id){
+		List<Member> list = service.sidList(id);
+		int count = service.sidCount(id);
+		
+		model.addAttribute("count", count);
+		model.addAttribute("list", list);
+		
+		return "member/namelist";
+	}
 	
 	
 	
