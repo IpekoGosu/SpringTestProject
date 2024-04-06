@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- Dao를 Mapper Interface로 대체 할 예정, namespace=Class의 풀네임 선언 필요 -->
+<mapper namespace="com.multi.mvc.notice.model.mapper.NoticeMapper">
+	<resultMap type="Notice" id="noticeResultMap">
+		<result property="nno" column="NNO"/>
+		<result property="title" column="TITLE"/>
+		<result property="content" column="CONTENT"/>
+		<result property="likeCount" column="LIKECOUNT"/>
+		<result property="mno" column="MNO"/>
+	</resultMap>
+	<resultMap type="Liken" id="likeResultMap">
+		<result property="lno" column="LNO"/>
+		<result property="nno" column="NNO"/>
+		<result property="id" column="ID"/>
+		<result property="mno" column="MNO"/>
+	</resultMap>
+	<resultMap type="FirstView" id="firstViewResultMap">
+		<result property="fno" column="fno"/>
+		<result property="nno" column="MNO"/>
+		<result property="viewTime" column="viewTime"/>
+		<result property="mno" column="mno"/>
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	
+	<select id="selectCountNotice" resultType="int">
+		SELECT COUNT(*) FROM NOTICE
+	</select>
+	
+	<select id="selectAllNotice" resultMap="NoticeResultMap" >
+		SELECT  
+			*
+		FROM NOTICE
+	</select>
+	
+	<!-- PK(기본키)로 조회하는 쿼리 -->
+	<select id="selectNotice" resultMap="NoticeResultMap" parameterType="int">
+		SELECT  
+			*
+		FROM NOTICE WHERE NNO = #{nno}
+	</select>
+	
+	<insert id="insertNotice" parameterType="Notice" >
+		<selectKey keyProperty="nno" resultType="int" order="AFTER">
+			SELECT @@IDENTITY AS nno
+		</selectKey>
+		INSERT INTO NOTICE (
+		    NNO, MNO, TITLE, CONTENT, LIKECOUNT
+		) VALUES(
+		    0, #{mno}, #{title}, #{content}, #{likeCount}, 
+		)
+	</insert>
+	
+	 <update id="deleteNotice" parameterType="int">
+	 	DELETE FROM NOTICE 
+	 	WHERE NNO = #{nno}
+	 </update>
+	 
+	
+</mapper>
+
+
+

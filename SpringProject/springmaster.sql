@@ -13,6 +13,34 @@ create table member(
     MODIFY_DATE DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE NOTICE (
+	NNO INT PRIMARY KEY auto_increment,
+    MNO INT,
+    TITLE VARCHAR(100),
+    CONTENT VARCHAR(1000),
+    LIKECOUNT INT
+);
+CREATE TABLE LIKEN (
+	LNO INT PRIMARY KEY auto_increment,
+    MNO INT,
+    NNO INT,
+    ID VARCHAR(100)
+);
+CREATE TABLE FIRSTVIEW (
+	FNO INT PRIMARY KEY auto_increment,
+    MNO INT,
+    NNO INT,
+    ID VARCHAR(100),
+    VIEWTIME DATETIME  DEFAULT CURRENT_TIMESTAMP,
+    NAME VARCHAR(100)
+);
+
+
+insert into member (
+	mno, id, password, name, ROLE, STATUS, ENROLL_DATE, MODIFY_DATE
+) values (
+	0, 'admin', '1234', '김관리', 'ADMIN', DEFAULT, DEFAULT, DEFAULT
+);
 insert into member (
 	mno, id, password, name, ROLE, STATUS, ENROLL_DATE, MODIFY_DATE
 ) values (

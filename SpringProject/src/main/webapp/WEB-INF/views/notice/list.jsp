@@ -72,36 +72,48 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-8 text-center">
-                        <h1 class="display-2 mb-3">회원 목록</h1>
-                        <div class="row">
-                        	<div class="col">
-		                        <p>id로 검색하기</p>
-		                        <div class="form-group">
-								    <div class="input-group mb-4">
-								        <input id="idinput" class="form-control" placeholder="ID" type="text">
-								        <div class="input-group-append">
-								            <span class="input-group-text" onclick="searchid()"><i class="fas fa-search"></i></span>
-								        </div>
-								    </div>
-								</div>
-                        	</div>
-                        	<div class="col">
-		                        <p>이름으로 검색하기</p>
-		                        <div class="form-group">
-								    <div class="input-group mb-4">
-								        <input id="nameinput" class="form-control" placeholder="search for name" type="text">
-								        <div class="input-group-append">
-								            <span class="input-group-text" onclick="searchname()"><i class="fas fa-search"></i></span>
-								        </div>
-								    </div>
-								</div>
-                        	</div>
-                        </div>
+                        <h1 class="display-2 mb-3">공지사항</h1>
+                       	<div class="col">
+	                        <p>이름으로 검색하기</p>
+	                        <div class="form-group">
+							    <div class="input-group mb-4">
+							        <input id="nameinput" class="form-control" placeholder="search for name" type="text">
+							        <div class="input-group-append">
+							            <span class="input-group-text" onclick="searchname()"><i class="fas fa-search"></i></span>
+							        </div>
+							    </div>
+							</div>
+                       	</div>
                         
                         <div id="tablearea">
                         
                         </div>
                         
+                        <nav aria-label="Page navigation example">
+						    <ul class="pagination">
+						        <li class="page-item">
+						            <a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a>
+						        </li>
+						        <li class="page-item">
+						            <a class="page-link" href="#">1</a>
+						        </li>
+						        <li class="page-item active">
+						            <a class="page-link" href="#">2</a>
+						        </li>
+						        <li class="page-item">
+						            <a class="page-link" href="#">3</a>
+						        </li>
+						        <li class="page-item">
+						            <a class="page-link" href="#">4</a>
+						        </li>
+						        <li class="page-item">
+						            <a class="page-link" href="#">5</a>
+						        </li>
+						        <li class="page-item">
+						            <a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a>
+						        </li>
+						    </ul>
+						</nav>
                         
                     </div>
                 </div>
@@ -128,26 +140,6 @@
     			console.log(jqXHR);
     		})
     	}
-    	function searchid(){
-    		let inputval = $('#idinput').val();
-    		
-    		$.ajax({
-    			type: 'post',
-    			url: '${path}/member/searchid',
-    			data:{
-    				id : inputval
-    			},
-    			dataType: "text",
-    			success: (result) => {
-    				console.log(result);
-        			$('#tablearea').replaceWith(result);
-    			},
-    			error: (e) =>{
-    				console.log(e);
-    			}
-    		})
-    	}
-    
     
     </script>
 

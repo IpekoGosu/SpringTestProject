@@ -73,6 +73,8 @@
             </ul>
             </c:if>
             <div class="d-none d-lg-block @@cta_button_classes">
+                <a href="${path}/notice/list" class="btn btn-md btn-outline-white animate-up-2 mr-3"><i class="fas fa-book mr-1"></i> <span class="d-xl-none">Docs</span> <span class="d-none d-xl-inline">공지사항</span></a>
+                <a href="${path}/member/view" class="btn btn-md btn-outline-white animate-up-2 mr-3"><i class="fas fa-book mr-1"></i> <span class="d-xl-none">Docs</span> <span class="d-none d-xl-inline">일반게시판</span></a>
                 <a href="${path}/member/view" class="btn btn-md btn-outline-white animate-up-2 mr-3"><i class="fas fa-book mr-1"></i> <span class="d-xl-none">Docs</span> <span class="d-none d-xl-inline">회원목록</span></a>
                 <c:if test="${loginMember == null}">
                 	<a href="${path}/login" class="btn btn-md btn-secondary animate-up-2"><i class="fas fa-shopping-bag mr-2"></i>로그인</a>
