@@ -5,10 +5,10 @@
 <mapper namespace="com.multi.mvc.notice.model.mapper.NoticeMapper">
 	<resultMap type="Notice" id="noticeResultMap">
 		<result property="nno" column="NNO"/>
+		<result property="mno" column="MNO"/>
 		<result property="title" column="TITLE"/>
 		<result property="content" column="CONTENT"/>
 		<result property="likeCount" column="LIKECOUNT"/>
-		<result property="mno" column="MNO"/>
 	</resultMap>
 	<resultMap type="Liken" id="likeResultMap">
 		<result property="lno" column="LNO"/>
@@ -29,14 +29,15 @@
 		SELECT COUNT(*) FROM NOTICE
 	</select>
 	
-	<select id="selectAllNotice" resultMap="NoticeResultMap" >
+	<select id="selectAllNotice" parameterType="NoticeParam" resultMap="noticeResultMap" >
 		SELECT  
 			*
 		FROM NOTICE
+		ORDER BY NNO DESC LIMIT ${limit} OFFSET ${offset};
 	</select>
 	
 	<!-- PK(기본키)로 조회하는 쿼리 -->
-	<select id="selectNotice" resultMap="NoticeResultMap" parameterType="int">
+	<select id="selectNotice" resultMap="noticeResultMap" parameterType="int">
 		SELECT  
 			*
 		FROM NOTICE WHERE NNO = #{nno}

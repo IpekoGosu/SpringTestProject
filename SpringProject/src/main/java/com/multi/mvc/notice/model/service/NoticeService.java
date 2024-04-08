@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.multi.mvc.notice.model.mapper.NoticeMapper;
 import com.multi.mvc.notice.model.vo.Notice;
+import com.multi.mvc.notice.model.vo.NoticeParam;
 
 @Service
 public class NoticeService {
@@ -18,8 +19,8 @@ public class NoticeService {
 		return mapper.selectCountNotice();
 	}
 
-	public List<Notice> selectAllNotice() {
-		return mapper.selectAllNotice();
+	public List<Notice> selectAllNotice(NoticeParam param) {
+		return mapper.selectAllNotice(param);
 	}
 
 	public Notice selectNotice(int nno) {
