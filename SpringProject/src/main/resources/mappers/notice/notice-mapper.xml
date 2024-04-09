@@ -19,10 +19,10 @@
 	<resultMap type="FirstView" id="firstViewResultMap">
 		<result property="fno" column="fno"/>
 		<result property="nno" column="MNO"/>
-		<result property="viewTime" column="viewTime"/>
-		<result property="mno" column="mno"/>
-		<result property="id" column="id"/>
-		<result property="name" column="name"/>
+		<result property="viewTime" column="VIEWTIME"/>
+		<result property="mno" column="MNO"/>
+		<result property="id" column="ID"/>
+		<result property="name" column="NAME"/>
 	</resultMap>
 	
 	<select id="selectCountNotice" resultType="int">
@@ -43,6 +43,14 @@
 		FROM NOTICE WHERE NNO = #{nno}
 	</select>
 	
+	<select id="selectFirstView" resultMap="firstViewResultMap" parameterType="map">
+		SELECT * FROM FIRSTVIEW
+		WHERE MNO = #{mno} AND NNO = #{nno}
+	</select>
+	<select id="selectAllFirstView" resultMap="firstViewResultMap">
+		SELECT * FROM FIRSTVIEW
+	</select>
+	
 	<insert id="insertNotice" parameterType="Notice" >
 		<selectKey keyProperty="nno" resultType="int" order="AFTER">
 			SELECT @@IDENTITY AS nno
@@ -51,6 +59,13 @@
 		    NNO, MNO, TITLE, CONTENT, LIKECOUNT
 		) VALUES(
 		    0, #{mno}, #{title}, #{content}, #{likeCount}, 
+		)
+	</insert>
+	<insert id="insertFirstView" parameterType="FirstView" >
+		INSERT INTO FIRSTVIEW (
+		    FNO, MNO, NNO, ID, VIEWTIME, NAME
+		) VALUES(
+		    0, #{mno}, #{nno}, #{id}, DEFAULT, #{name} 
 		)
 	</insert>
 	

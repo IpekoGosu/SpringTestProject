@@ -79,7 +79,7 @@
                 	<a href="${path}/login" class="btn btn-md btn-secondary animate-up-2"><i class="fas fa-shopping-bag mr-2"></i>로그인</a>
             	</c:if>
                 <c:if test="${loginMember != null}">
-                	<a href="${path}/loginout" class="btn btn-md btn-secondary animate-up-2"><i class="fas fa-shopping-bag mr-2"></i>로그아웃</a>
+                	<a href="${path}/logout" class="btn btn-md btn-secondary animate-up-2"><i class="fas fa-shopping-bag mr-2"></i>로그아웃</a>
             	</c:if>
             </div>
         </div>

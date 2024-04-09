@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.multi.mvc.member.model.vo.Member;
 import com.multi.mvc.notice.model.service.NoticeService;
+import com.multi.mvc.notice.model.vo.FirstView;
 import com.multi.mvc.notice.model.vo.Notice;
 import com.multi.mvc.notice.model.vo.NoticeParam;
 
@@ -59,9 +60,25 @@ public class NoticeController {
 	
 	
 	@GetMapping("/notice/view")
-	public String viewNotice(Model model, int nno) {
+	public String viewNotice(Model model, int nno, 
+			@SessionAttribute(name = "loginMember", required = false) Member loginMember) {
 		Notice notice = service.selectNotice(nno);
 		model.addAttribute("notice", notice);
+		
+		if (loginMember != null) {
+			if (service.selectFirstView(loginMember.getMno(), nno) == null) {
+				FirstView firstView = new FirstView();
+				firstView.setMno(loginMember.getMno());
+				firstView.setName(loginMember.getName());
+				firstView.setId(loginMember.getId());
+				firstView.setNno(nno);
+				int result = service.insertFirstView(firstView);
+				
+			}
+		}
+		List<FirstView> list = service.allFirstView();
+		model.addAttribute("list", list);
+		
 		return "notice/view";
 	}
 	

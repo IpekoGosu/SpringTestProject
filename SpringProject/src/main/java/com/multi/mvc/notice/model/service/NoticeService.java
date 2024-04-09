@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.multi.mvc.notice.model.mapper.NoticeMapper;
+import com.multi.mvc.notice.model.vo.FirstView;
 import com.multi.mvc.notice.model.vo.Notice;
 import com.multi.mvc.notice.model.vo.NoticeParam;
 
@@ -25,6 +26,19 @@ public class NoticeService {
 
 	public Notice selectNotice(int nno) {
 		return mapper.selectNotice(nno);
+	}
+	
+	public List<FirstView> allFirstView(){
+		return mapper.selectAllFirstView();
+	}
+	
+	public FirstView selectFirstView(int mno, int nno) {
+		return mapper.selectFirstView(mno, nno);
+	}
+	
+	@Transactional
+	public int insertFirstView(FirstView firstView) {
+		return mapper.insertFirstView(firstView);
 	}
 
 	@Transactional

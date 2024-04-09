@@ -104,7 +104,9 @@
 									            <th scope="row">${status.count}</th>
 									            <td>
 									                <div class="d-flex align-items-center">
+									                	<a href="${path}/notice/view?nno=${item.nno}">
 									                    ${item.title}
+									                	</a>
 									                </div>
 									            </td>
 									            <td>${item.likeCount}</td>
