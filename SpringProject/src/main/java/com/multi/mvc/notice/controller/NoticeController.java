@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.multi.mvc.member.model.vo.Member;
 import com.multi.mvc.notice.model.service.NoticeService;
 import com.multi.mvc.notice.model.vo.FirstView;
+import com.multi.mvc.notice.model.vo.Liken;
 import com.multi.mvc.notice.model.vo.Notice;
 import com.multi.mvc.notice.model.vo.NoticeParam;
 
@@ -76,26 +77,59 @@ public class NoticeController {
 				
 			}
 		}
-		List<FirstView> list = service.allFirstView();
+		List<FirstView> list = service.allFirstView(nno);
 		model.addAttribute("list", list);
+		model.addAttribute("loginMember", loginMember);
 		
 		return "notice/view";
 	}
 	
 	@GetMapping("/notice/write")
 	public String writeNotice(Model model) {
-		return "noctice/write";
+		return "notice/write";
 	}
 	@PostMapping("/notice/write")
 	public String saveNotice(Model model, Notice notice) {
+		System.out.println("11111111111111");
 		int result = 0;
 		result = service.insertNotice(notice);
+		System.out.println("222222222222222");
+		System.out.println(result);
 		if (result == 0) {
 			model.addAttribute("msg", "저장 실패");
 			model.addAttribute("location", "/");
 			return "common/msg";
 		} else {
-			return "notice/view?nno=" + notice.getNno();
+			System.out.println("3333333333333333333333333");
+			model.addAttribute("msg", "성공");
+			model.addAttribute("location", "/notice/view?nno=" + notice.getNno());
+			return "common/msg";
+		}
+		
+	}
+	
+	@GetMapping("/notice/like")
+	public String likethis(Model model, int nno, 
+			@SessionAttribute Member loginMember) {
+		int mno = loginMember.getMno();
+		// 신규
+		if (service.selectLiken(mno, nno) == null) {
+			Liken liken = new Liken();
+			liken.setMno(mno);
+			liken.setNno(nno);
+			liken.setId(loginMember.getId());
+			service.insertLiken(liken);
+			service.updateNotice(nno);
+			model.addAttribute("msg", "좋아요 등록");
+			model.addAttribute("location", "/notice/view?nno=" + nno);
+			return "common/msg";
+		} else {
+			// 삭제
+			service.deleteLiken(mno, nno);
+			service.updateNotice(nno);
+			model.addAttribute("msg", "해제");
+			model.addAttribute("location", "/notice/view?nno=" + nno);
+			return "common/msg";
 		}
 		
 	}

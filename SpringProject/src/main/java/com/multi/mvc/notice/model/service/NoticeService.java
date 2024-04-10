@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.multi.mvc.notice.model.mapper.NoticeMapper;
 import com.multi.mvc.notice.model.vo.FirstView;
+import com.multi.mvc.notice.model.vo.Liken;
 import com.multi.mvc.notice.model.vo.Notice;
 import com.multi.mvc.notice.model.vo.NoticeParam;
 
@@ -28,8 +29,8 @@ public class NoticeService {
 		return mapper.selectNotice(nno);
 	}
 	
-	public List<FirstView> allFirstView(){
-		return mapper.selectAllFirstView();
+	public List<FirstView> allFirstView(int nno){
+		return mapper.selectAllFirstView(nno);
 	}
 	
 	public FirstView selectFirstView(int mno, int nno) {
@@ -50,4 +51,24 @@ public class NoticeService {
 	public int deleteNotice(int nno) {
 		return mapper.deleteNotice(nno);
 	}
+	
+	public Liken selectLiken(int mno, int nno) {
+		return mapper.selectLiken(mno, nno);
+	}
+	
+	@Transactional
+	public int insertLiken(Liken liken) {
+		return mapper.insertLiken(liken);
+	}
+	
+	@Transactional
+	public int deleteLiken(int mno, int nno) {
+		return mapper.deleteLiken(mno, nno);
+	}
+	
+	@Transactional
+	public int updateNotice(int nno) {
+		return mapper.updateNotice(nno);
+	}
+	
 }

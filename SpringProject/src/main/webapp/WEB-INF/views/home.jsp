@@ -65,19 +65,13 @@
 <body>
     <main>
 
-        <div class="preloader bg-dark flex-column justify-content-center align-items-center">
-    <div class="position-relative">
-        <img src="${path}/resources/assets/img/brand/light-without-letter.svg" alt="Logo loader">
-        <img src="${path}/resources/assets/img/brand/letter.svg" class="rotate-letter" alt="Letter loader">
-    </div>
-</div>
         <section class="min-vh-100 d-flex align-items-center justify-content-center">
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center text-dark d-flex align-items-center justify-content-center">
                         <div>
                             <img class="img-fluid w-50" src="${path}/resources/assets/img/illustrations/server-error.svg" alt="girl illustration">
-                            <h1 class="mt-4">Spring Master Class</h1>
+                            <h1 class="mt-4">Spring Master Class</h1></div>
                     </div>
                 </div>
             </div>

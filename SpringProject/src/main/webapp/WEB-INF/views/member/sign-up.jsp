@@ -62,13 +62,6 @@
 <body>
     <main>
 
-        <div class="preloader bg-dark flex-column justify-content-center align-items-center">
-    <div class="position-relative">
-        <img src="${path}/resources/assets/img/brand/light-without-letter.svg" alt="Logo loader">
-        <img src="${path}/resources/assets/img/brand/letter.svg" class="rotate-letter" alt="Letter loader">
-    </div>
-</div>
-
         <!-- Section -->
         <section class="min-vh-100 d-flex align-items-center section-image overlay-soft-dark py-5 py-lg-0" data-background="${path}/resources/assets/img/form-image.jpg">
             <div class="container">

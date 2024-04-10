@@ -73,9 +73,9 @@
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-8 text-center">
                         <h1 class="display-2 mb-3">공지사항</h1>
-                        <c:if test="${loginMember.role} == 'ADMIN'">
+                        <c:if test="${loginMember.role == 'ADMIN'}">
                        	<div class="btn mb-2 mr-2 btn-outline-primary">
-                      		<a href="#">
+                      		<a href="${path}/notice/write">
                        		글쓰기
                       		</a>
                        	</div>

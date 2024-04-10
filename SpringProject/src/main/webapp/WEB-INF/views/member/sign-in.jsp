@@ -63,12 +63,6 @@
 </jsp:include>
 <body>
     <main>
-
-        <div class="preloader bg-dark flex-column justify-content-center align-items-center">
-    <div class="position-relative">
-        <img src="${path}/resources/assets/img/brand/light-without-letter.svg" alt="Logo loader">
-        <img src="${path}/resources/assets/img/brand/letter.svg" class="rotate-letter" alt="Letter loader">
-    </div>
 </div>
 
         <!-- Section -->

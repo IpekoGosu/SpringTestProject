@@ -25,6 +25,10 @@
 		<result property="name" column="NAME"/>
 	</resultMap>
 	
+	<select id="selectLiken" resultType="Liken" parameterType="map">
+		SELECT * FROM LIKEN
+		WHERE MNO = #{mno} AND NNO = #{nno}
+	</select>
 	<select id="selectCountNotice" resultType="int">
 		SELECT COUNT(*) FROM NOTICE
 	</select>
@@ -47,19 +51,30 @@
 		SELECT * FROM FIRSTVIEW
 		WHERE MNO = #{mno} AND NNO = #{nno}
 	</select>
-	<select id="selectAllFirstView" resultMap="firstViewResultMap">
+	<select id="selectAllFirstView" resultMap="firstViewResultMap" parameterType="int">
 		SELECT * FROM FIRSTVIEW
+		WHERE NNO = #{nno}
 	</select>
 	
-	<insert id="insertNotice" parameterType="Notice" >
+	<insert id="insertLiken" parameterType="Liken" >
 		<selectKey keyProperty="nno" resultType="int" order="AFTER">
-			SELECT @@IDENTITY AS nno
+			SELECT @@IDENTITY AS lno
 		</selectKey>
+		INSERT INTO LIKEN (
+		    LNO, NNO, MNO, ID
+		) VALUES(
+		    0, #{nno}, #{mno}, #{id}
+		)
+	</insert>
+	<insert id="insertNotice" parameterType="Notice" >
 		INSERT INTO NOTICE (
 		    NNO, MNO, TITLE, CONTENT, LIKECOUNT
 		) VALUES(
-		    0, #{mno}, #{title}, #{content}, #{likeCount}, 
+		    0, #{mno}, #{title}, #{content}, 0
 		)
+		<selectKey keyProperty="nno" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 	</insert>
 	<insert id="insertFirstView" parameterType="FirstView" >
 		INSERT INTO FIRSTVIEW (
@@ -69,9 +84,20 @@
 		)
 	</insert>
 	
+	 <update id="updateNotice" parameterType="int">
+	 	UPDATE NOTICE 
+	 	SET LIKECOUNT = (SELECT COUNT(*) FROM LIKEN
+	 					WHERE NNO = #{nno}
+	 					)
+	 	WHERE NNO = #{nno}
+	 </update>
 	 <update id="deleteNotice" parameterType="int">
 	 	DELETE FROM NOTICE 
 	 	WHERE NNO = #{nno}
+	 </update>
+	 <update id="deleteLiken" parameterType="map">
+	 	DELETE FROM LIKEN 
+	 	WHERE MNO = #{mno} AND NNO = #{nno}
 	 </update>
 	 
 	

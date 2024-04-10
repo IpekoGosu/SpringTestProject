@@ -63,7 +63,7 @@
     <header class="header-global">
     <nav id="navbar-main" class="navbar navbar-expand-lg navbar-transparent navbar-dark navbar-theme-primary mb-4">
         <div class="container">
-            <a class="navbar-brand @@logo_classes" href="${path}/resources/index.html">
+            <a class="navbar-brand @@logo_classes" href="${path}/">
                 <img class="navbar-brand-dark common" src="${path}/resources/assets/img/brand/light.svg" height="35" alt="Logo light">
                 <img class="navbar-brand-light common" src="${path}/resources/assets/img/brand/dark.svg" height="35" alt="Logo dark">
             </a>
@@ -73,8 +73,8 @@
             </ul>
             </c:if>
             <div class="d-none d-lg-block @@cta_button_classes">
-                <a href="${path}/notice/list" class="btn btn-md btn-outline-white animate-up-2 mr-3"><i class="fas fa-book mr-1"></i> <span class="d-xl-none">Docs</span> <span class="d-none d-xl-inline">공지사항</span></a>
-                <a href="${path}/member/view" class="btn btn-md btn-outline-white animate-up-2 mr-3"><i class="fas fa-book mr-1"></i> <span class="d-xl-none">Docs</span> <span class="d-none d-xl-inline">회원목록</span></a>
+                <a href="${path}/notice/list" class="btn btn-md btn-outline-white animate-up-2 mr-3"><i class="fas fa-book mr-1"></i> <span class="d-xl-none">공지</span> <span class="d-none d-xl-inline">공지사항</span></a>
+                <a href="${path}/member/view" class="btn btn-md btn-outline-white animate-up-2 mr-3"><i class="fas fa-book mr-1"></i> <span class="d-xl-none">회원</span> <span class="d-none d-xl-inline">회원목록</span></a>
                 <c:if test="${loginMember == null}">
                 	<a href="${path}/login" class="btn btn-md btn-secondary animate-up-2"><i class="fas fa-shopping-bag mr-2"></i>로그인</a>
             	</c:if>

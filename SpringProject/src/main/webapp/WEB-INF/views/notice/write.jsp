@@ -65,59 +65,25 @@
 	</jsp:include>
     <main>
 
-
         <div class="section section-sm bg-white pt-6">
             <article class="container">
                 <div class="row justify-content-center">
-                	<c:if test="${not empty loginMember}">
-                	<button class="btn mb-2 mr-2 btn-icon-only rounded-circle btn-primary">
-					    <span class="btn-inner-icon" onclick="likebutton(${notice.nno});"><i class="far fa-thumbs-up"></i></span>
-					</button>
-                	</c:if>
-                    <div class="col-12 col-lg-8">
-                    	제목 : <h1>${notice.title}</h1>
-                    	<div>좋아요 : ${notice.likeCount}</div>
-                    	<br><br>
-                    	내용 : ${notice.content}
-                    	<br><br><br><br><br><br>
-                    	<h4>공지사항 읽은 사람<br>아이디 - 처음 읽은 시간 - 이름</h4>
-                    	<c:forEach var="item" items="${list}" varStatus="status">
-                    	<div class="card border-light mb-3 py-3">
-						    <div class="card-body d-flex align-items-center flex-wrap flex-lg-nowrap py-0">
-						        <div class="col-auto col-lg-1 d-flex align-items-center px-0">
-									${status.count }
-						        </div>
-						        <div class="col-lg-3 col-8 pl-0 ml-2">
-						            ${item.id }
-						        </div>
-						        <div class="col col-lg-1 text-right px-0 order-lg-4">
-						            <span class="text-muted text-sm">${item.name }</span>
-						        </div>
-						        <div class="col-12 col-lg-7 d-flex align-items-center px-0">
-						            <div class="col col-lg-11 px-0">
-						                <div class="d-flex flex-wrap flex-lg-nowrap align-items-center">
-						                    <fmt:formatDate value="${item.viewTime}" pattern="yyyy-MM-dd E HH:mm" type="date"/>
-						                </div>
-						            </div>
-						        </div>
-						    </div>
+                	<form action="${path}/notice/write" method="post">
+                		<input type="hidden" name="mno" value="1">
+						<div class="form-group">
+					        <label for="exampleInputEmail1">제목</label>
+					        <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+					    </div>
+                		<div class="form-group">
+						    <label for="exampleFormControlTextarea2">내용</label>
+						    <textarea name="content" class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
 						</div>
-						</c:forEach>
-						
-                    </div>
+						<button type="submit" class="btn btn-primary">제출</button>
+                	</form>
                 </div>
             </article>
         </div>
     </main>
-    
-    <script type="text/javascript">
-    	function likebutton(nno) {
-			let url = "${path}/notice/like?nno=";
-			var requesturl = url + nno;
-			location.replace(requesturl);
-		}
-    
-    </script>
     
 
     <!-- Core -->
@@ -164,6 +130,23 @@
 
 <!-- Spaces custom Javascript -->
 <script src="${path}/resources/assets/js/spaces.js"></script>
+    <script>
+        // here you should load content from an Ajax request and when it
+        // loads you can disable the button from loading
+        $('#loadOnClick').click(function() {
+            $button = $(this);
+            $loadContent = $('#extraContent');
+            $allLoaded = $('#allLoadedText');
+            $button.addClass('btn-loading');
+            $button.attr('disabled', true);
+
+            setTimeout(function() {
+                $loadContent.show();
+                $button.hide();
+                $allLoaded.show();
+            }, 1500);
+        });
+    </script>
 </body>
 
 </html>
