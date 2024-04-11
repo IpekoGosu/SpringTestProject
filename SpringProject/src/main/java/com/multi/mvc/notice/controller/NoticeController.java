@@ -37,6 +37,7 @@ public class NoticeController {
 		return "notice/list";
 	}
 	
+	// Ajax 처리
 	@PostMapping("/notice/page")
 	public String noticepage(Model model, int page) {
 		NoticeParam param = new NoticeParam();
@@ -51,12 +52,6 @@ public class NoticeController {
 		model.addAttribute("pageInfo", pageInfo);
 		
 		return "notice/alist";
-	}
-	
-	@PostMapping("/notice/paging")
-	public String noticepaging(Model model, NoticeParam param) {
-		
-		return "notice/paging";
 	}
 	
 	
